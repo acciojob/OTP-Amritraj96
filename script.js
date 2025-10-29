@@ -1,9 +1,9 @@
-//your JS code here. If required.
 // script.js
 window.addEventListener("DOMContentLoaded", () => {
   const inputs = document.querySelectorAll(".code");
 
-  inputs[0].focus(); // focus first input by default
+  // Focus the first input by default
+  inputs[0].focus();
 
   inputs.forEach((input, index) => {
     input.addEventListener("input", (e) => {
@@ -15,8 +15,8 @@ window.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Move to next field if not the last
-      if (value && index < inputs.length - 1) {
+      // Move focus to next input
+      if (index < inputs.length - 1) {
         inputs[index + 1].focus();
       }
     });
@@ -24,15 +24,17 @@ window.addEventListener("DOMContentLoaded", () => {
     input.addEventListener("keydown", (e) => {
       if (e.key === "Backspace") {
         if (input.value === "") {
-          // move back only if empty
+          // Move focus to previous input if empty
           if (index > 0) {
             inputs[index - 1].focus();
-            inputs[index - 1].value = ""; // clear previous field
+            inputs[index - 1].value = "";
           }
         } else {
-          input.value = ""; // clear current field
+          // Clear current input if not empty
+          input.value = "";
         }
       }
     });
   });
 });
+
